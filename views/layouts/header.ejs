@@ -63,7 +63,7 @@
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                <nav class="collapse  navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <div class="nav-item dropdown">
                             <!-- <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a> -->
@@ -91,11 +91,12 @@
                         <div class="navbar-nav mr-auto py-0">
                             <% pages.forEach(function(page) { %>
                                 <% if (page.slug == 'home') { %>
-                                    <a href="/"class="nav-item nav-link active"><%= page.title %></a>
+                                    <a href="/"class="nav-item nav-link"><%= page.title %></a>
                                 <% } else { %>
                                     <a href="/<%= page.slug %>"class="nav-item nav-link "><%= page.title %></a>
                                 <% } %>
                             <% }); %>
+                            <a href="/contact"class="nav-item nav-link">Contact Us</a>
                             <!-- <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -109,6 +110,7 @@
                             <%  if(user){    %>   
                                 <a href="/users/logout" class="nav-item nav-link">Logout</a>
                             <%}else{%>
+                                <a href="/admin/pages"class="nav-item nav-link active">Admin</a>
                             <a href="/users/login" class="nav-item nav-link">Login</a>
                             <a href="/users/register" class="nav-item nav-link">Register</a>
                             <%}%>

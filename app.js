@@ -112,6 +112,10 @@ app.get('*',function(req,res,next)
     res.locals.user=req.user||null;
     next();
 })
+app.get('/contact',function(req,res)
+{
+    res.render('contact',{title:"Contact Us"});
+})
 //set routes
 var pages = require('./routes/pages.js');
 var products = require('./routes/products.js');
