@@ -201,7 +201,7 @@ router.post('/edit-product/:id',function (req, res) {
 /*
  * POST product gallery
  */
-router.post('/product-gallery/:id',isAdmin, function (req, res) {
+router.post('/product-gallery/:id', function (req, res) {
 
     var productImage = req.files.file;
     var id = req.params.id;
@@ -236,7 +236,7 @@ router.get('/delete-image/:image',isAdmin,function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    req.flash('success', 'Image deleted!');
+                    // req.flash('success', 'Image deleted!');
                     res.redirect('/admin/products/edit-product/' + req.query.id);
                 }
             });
@@ -257,7 +257,7 @@ router.get('/delete-product/:id',isAdmin,function (req, res) {
             console.log(err);
         } else {
             Product.findByIdAndRemove(id).then();
-            req.flash('success', 'Product deleted!');
+            // req.flash('success', 'Product deleted!');
             res.redirect('/admin/products');
         }
     });

@@ -20,8 +20,7 @@ router.get('/:slug',function(req,res)
             });
             
         }
-        else
-        res.send("no page found");
+       
     });
 })
 module.exports=router;
