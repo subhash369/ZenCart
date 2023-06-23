@@ -2,7 +2,7 @@
 <html lang="en" >  
 <head>  
   <meta charset="UTF-8">  
-  <title> Bootstrap 4 Login Form Example  
+  <title> Login 
  </title>  
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">  
 </head>  
@@ -52,7 +52,15 @@ font-weight: 300;
     <div class="card login-form">  
     <div class="card-body">  
         <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Z</span>enCart  Login</h1>
-
+        <%- messages('messages', locals) %>
+            
+        <% if (errors) {%>
+            <% errors.forEach(function(error) { %>
+            <div class="alert alert-danger" >
+                <%= error.msg %>
+            </div>
+            <% });%>
+        <% }%>
         <div class="card-text">  
             <form action="/users/login" method="post">  
                 <div class="form-group">  

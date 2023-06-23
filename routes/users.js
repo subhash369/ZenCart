@@ -3,25 +3,38 @@ var router = express.Router();
 var passport = require('passport');
 var bcrypt = require('bcrypt');
 var User = require('../models/user');
+
 router.get('/register', function (req, res) {
   res.render('register', {
-    title: 'Register'
+    title: 'Register',User:User
   });
 });
 
 router.post('/register', function (req, res) {
   var name = req.body.name;
-  var username = req.body.name;
+  var username = req.body.username;
   var email = req.body.email;
   var password = req.body.password;
-  User.findOne({username:"Admin"}).then(function(p)
-  {
-   if(p)
-    p.admin=1;
-  })
+  var password2=req.body.password2;
+  req.checkBody('name', 'Name is required!').notEmpty();
+  req.checkBody('email', 'Email is required!').isEmail();
+  req.checkBody('username', 'Username is required!').notEmpty();
+  req.checkBody('password', 'Password is required!').notEmpty();
+  req.checkBody('password2', 'Passwords do not match!').equals(password);
+  var errors = req.validationErrors();
+ console.log(errors);
+    if (errors) {
+        res.render('register', {
+            errors: errors,
+            user: null,
+            title: 'Register'
+        });
+    }
+    else{
   User.findOne({ username: username }).then(function (existingUser) {
     if (existingUser) {
-      console.log(existingUser.username);
+      req.flash('danger', 'Username exists, choose another!');
+      console.log('already exists '+existingUser.username);
     //   res.send("username already exists");
     } else {
       var user = new User({
@@ -41,14 +54,16 @@ router.post('/register', function (req, res) {
           return user.save();
         })
         .then(function () {
+          req.flash('success', 'You are now registered!');
           res.redirect('/users/login');
         })
         .catch(function (err) {
           console.error('Error during registration:', err);
-          res.send('An error occurred during registration');
+          // res.send('An error occurred during registration');
         });
     }
   });
+}
 });
 
 

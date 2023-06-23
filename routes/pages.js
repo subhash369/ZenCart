@@ -22,5 +22,6 @@ router.get('/:slug',function(req,res)
         }
        
     });
+    
 })
 module.exports=router;

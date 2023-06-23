@@ -109,8 +109,10 @@
                         <div class="navbar-nav ml-auto py-0">
                             <%  if(user){    %>   
                                 <a href="/users/logout" class="nav-item nav-link">Logout</a>
-                            <%}else{%>
+                            <%  if(user.admin==1){   %>
                                 <a href="/admin/pages"class="nav-item nav-link active">Admin</a>
+                            <%}}else{%>
+                              
                             <a href="/users/login" class="nav-item nav-link">Login</a>
                             <a href="/users/register" class="nav-item nav-link">Register</a>
                             <%}%>
@@ -154,6 +156,14 @@
             </div>
         </div>
     </div>
-
+    <%- messages('messages', locals) %>
+            
+    <% if (errors) {%>
+        <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger" >
+            <%= error.msg %>
+        </div>
+        <% });%>
+    <% }%>
 
 <!-- 00000000000000000000000000000000000000000000 -->

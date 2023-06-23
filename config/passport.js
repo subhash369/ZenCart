@@ -10,7 +10,8 @@ module.exports = function (passport) {
             if (!user) {
                 return done(null, false, {message: 'No user found!'});
             }
-
+            else
+            {
             bcrypt.compare(password, user.password, function (err, isMatch) {
                 if (err)
                     console.log(err);
@@ -21,6 +22,7 @@ module.exports = function (passport) {
                     return done(null, false, {message: 'Wrong password.'});
                 }
             });
+        }
         });
 
     }));
