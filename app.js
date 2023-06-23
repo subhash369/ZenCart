@@ -9,7 +9,7 @@ var fileUpload = require('express-fileupload');
 var passport = require('passport');
 
 // Connect to db
-mongoose.connect(config.database);
+mongoose.connect(process.env.DB_URL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
