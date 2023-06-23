@@ -34,6 +34,7 @@ router.post('/register', function (req, res) {
   User.findOne({ username: username }).then(function (existingUser) {
     if (existingUser) {
       req.flash('danger', 'Username exists, choose another!');
+      res.redirect('/users/register');
       console.log('already exists '+existingUser.username);
     //   res.send("username already exists");
     } else {
